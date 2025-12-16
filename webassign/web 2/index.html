@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Practice</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .square {
+      width: 100px;
+      height: 100px;
+      color: white;
+      font-size: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .square1 { background: red; }
+    .square2 { background: green; }
+    .square3 { background: blue; }
+
+    .square1:hover { background: darkred; }
+    .square2:hover { background: darkgreen; }
+    .square3:hover { background: darkblue; }
+
+    .card-container {
+      display: flex;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: #333;
+      color: white;
+      padding: 20px;
+      border-radius: 5px;
+      width: 120px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<h1 id="display">Welcome</h1>
+
+<button onclick="changeName()">Push Me</button>
+<button ondblclick="changeBack()">Double Click Me</button>
+
+<hr>
+
+<h2>Calculator</h2>
+<input type="number" id="num1" placeholder="First number">
+<input type="number" id="num2" placeholder="Second number">
+
+<select id="operation">
+  <option value="">Select</option>
+  <option value="add">Add</option>
+  <option value="subtract">Subtract</option>
+  <option value="multiply">Multiply</option>
+  <option value="divide">Divide</option>
+</select>
+
+<button onclick="calculate()">Calculate</button>
+
+<p id="result"></p>
+
+<hr>
+
+<h2>Click a Square</h2>
+
+<div class="container">
+  <div class="square square1" onclick="squareClick(1)">1</div>
+  <div class="square square2" onclick="squareClick(2)">2</div>
+  <div class="square square3" onclick="squareClick(3)">3</div>
+</div>
+
+<p id="tries"></p>
+
+<hr>
+
+<h2>Dynamic Cards</h2>
+<div id="cardContainer" class="card-container"></div>
+
+<script>
+
+// BUTTON FUNCTIONS
+function changeName() {
+  document.getElementById("display").innerHTML = "I have pushed the button";
+}
+
+function changeBack() {
+  document.getElementById("display").innerHTML = "Welcome";
+}
+
+// CALCULATOR
+function calculate() {
+  let n1 = Number(document.getElementById("num1").value);
+  let n2 = Number(document.getElementById("num2").value);
+  let op = document.getElementById("operation").value;
+  let answer = 0;
+
+  if (op === "add") answer = n1 + n2;
+  else if (op === "subtract") answer = n1 - n2;
+  else if (op === "multiply") answer = n1 * n2;
+  else if (op === "divide") answer = n1 / n2;
+  else {
+    document.getElementById("result").innerHTML = "Invalid operation";
+    return;
+  }
+
+  document.getElementById("result").innerHTML = "Answer: " + answer;
+}
+
+// RANDOM GAME
+let tries = 0;
+
+function squareClick(num) {
+  let random = Math.floor(Math.random() * 3) + 1;
+  tries++;
+
+  if (num === random) {
+    alert("You won!");
+  } else {
+    alert("Try again!");
+  }
+
+  document.getElementById("tries").innerHTML = "Tries: " + tries;
+}
+
+// CREATE CARDS
+function createCard(index) {
+  const card = document.createElement("div");
+  card.className = "card";
+
+  const h2 = document.createElement("h2");
+  h2.innerText = "Card " + index;
+
+  const p = document.createElement("p");
+  p.innerText = "Number: " + Math.floor(Math.random()*100);
+
+  card.appendChild(h2);
+  card.appendChild(p);
+
+  return card;
+}
+
+const container = document.getElementById("cardContainer");
+
+for (let i = 1; i <= 3; i++) {
+  container.appendChild(createCard(i));
+}
+
+</script>
+
+</body>
+</html>

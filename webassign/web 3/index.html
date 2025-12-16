@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web 3 JavaScript Practice</title>
+</head>
+<body>
+
+<!-- ===== GRADING SYSTEM ===== -->
+<h2>Student Grade Checker</h2>
+<input type="number" id="numberInput" placeholder="Enter your mark" autocomplete="off">
+<button onclick="checkResult()">Check Result</button>
+<p id="result"></p>
+
+<hr>
+
+<!-- ===== FULL NAME GENERATOR ===== -->
+<h2>Full Name Generator</h2>
+<input type="text" id="firstName" placeholder="First Name" onkeyup="addNames()">
+<input type="text" id="lastName" placeholder="Last Name" onkeyup="addNames()">
+<br><br>
+<input type="text" id="fullName" placeholder="Full Name" disabled>
+
+<hr>
+
+<!-- ===== FRUIT SHOP ===== -->
+<h2>Fruit Shop</h2>
+<input type="number" id="quantity" placeholder="Quantity">
+
+<select id="fruit">
+  <option value="20">Apple (20)</option>
+  <option value="5">Banana (5)</option>
+  <option value="10">Cherry (10)</option>
+</select>
+
+<button onclick="totalPrice()">Buy</button>
+
+<p id="fruitResult"></p>
+
+<hr>
+
+<!-- ===== LOOP DISPLAY ===== -->
+<h2>Loop Example</h2>
+<p id="display"></p>
+
+<script>
+
+// ===== GRADING SYSTEM =====
+function checkResult() {
+  let mark = Number(document.getElementById("numberInput").value);
+  let grade = "";
+
+  if (mark < 0 || mark > 100) {
+    grade = "Invalid mark";
+  } 
+  else if (mark >= 80) {
+    grade = "A";
+  } 
+  else if (mark >= 70) {
+    grade = "B";
+  } 
+  else if (mark >= 60) {
+    grade = "C";
+  } 
+  else if (mark >= 50) {
+    grade = "D";
+  } 
+  else {
+    grade = "F";
+  }
+
+  document.getElementById("result").innerHTML = "Your grade is: " + grade;
+}
+
+// ===== FULL NAME REAL-TIME DISPLAY =====
+function addNames() {
+  let first = document.getElementById("firstName").value;
+  let last = document.getElementById("lastName").value;
+
+  document.getElementById("fullName").value = first + " " + last;
+}
+
+// ===== FRUIT PRICE CALCULATOR =====
+function totalPrice() {
+  let qty = Number(document.getElementById("quantity").value);
+  let price = Number(document.getElementById("fruit").value);
+
+  let total = qty * price;
+
+  document.getElementById("fruitResult").innerHTML =
+    "Total Price: GHC " + total;
+}
+
+// ===== WHILE LOOP DISPLAY =====
+let x = 1;
+let output = "";
+
+while (x <= 10) {
+  output += x + "<br>";
+  x++;
+}
+
+document.getElementById("display").innerHTML = output;
+
+</script>
+
+</body>
+</html>

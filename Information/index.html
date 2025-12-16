@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="colorbtn">change background color</button>
+    <script>
+        let btn = document.getElementById('colorbtn');
+        btn.addEventListener("click",function(){
+            const randomColor = `rgb(${Math.floor(Math.random()*256)},
+                                    ${Math.floor(Math.random()*256)},
+                                    ${Math.floor(Math.random()*256)})`;
+            document.body.style.backgroundColor = randomColor                        
+        })
+    </script>
+</body>
+</html>

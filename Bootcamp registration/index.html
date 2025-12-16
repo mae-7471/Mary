@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data science Bootcamp Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="about">
+        <h1>Data science Bootcamp 2025</h1>
+    <p>
+        The data science Bootcamp is an intensive training program designed to equip participants with the skills and knowledge needed to become datd science professionals.The bootcamp typically covers a range of topics including Data Analysis,machine learning,data visualization and proggramming skills in languages like python,R,SQL.
+    </p>
+    </div>
+    
+    <div class="container">
+        <h2>what is included</h2>
+        <div class="included">
+            <ul>
+                <li>Round-trip luxury coach from campus</li>
+                <li>3 days of intensive data science training</li>
+                <li>Guided project and hands-on pratice</li>
+                <li>A day-out to the beach</li>
+            </ul>
+        </div>
+        <h3>please fill this form</h3>
+        <form id="registration-form">
+            <label for="name">Full name:</label>
+            <input type="text" id="name" name="name" required>
+             
+             <label for="email">university Email:</label>
+             <select id="email" name="email">
+                <option value="info@gctu.edu.gh">info@gctu.edu.gh</option>
+                <option value="info@ug.edu.gh">info@ug.edu.gh</option>
+                <option value="info@atu.edu.gh">info@atu.edu.gh</option>
+             </select>
+
+             <label for="phone">phone number</label>
+             <input type="tel" id="phone" name="phone" required>
+
+             <label for="year">year</label>
+             <select id="year" name="year">
+                <option value="1st year">1st year</option>
+                <option value="2nd year">2nd year</option>
+                <option value="3rd year">3rd year</option>
+                <option value="4th year">4th year</option>
+             </select>
+             <label for="dietary">Dietary requirements or allergies (if any):</label>
+             <input type="text" id="dietary" name="dietary">
+
+             <button onclick="submitForm()">Reserve my spot</button>
+        </form>
+    </div>
+    <script>
+        function submitForm() {
+            const form = document.getElementById('registration-form');
+            const formdata = new FormData(form);
+
+            fetch('/api/register',{
+                method: 'POST',
+                body: formdata,
+            })
+            .then(Response  => response.json())
+            .then(data  => console.log(data))
+            .catch(error  => console.error(error));
+        }
+    </script>
+</body>
+</html>
